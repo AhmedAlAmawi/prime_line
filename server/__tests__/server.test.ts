@@ -6,7 +6,7 @@ describe("POST /api/median_prime", () => {
   it("should return an object with correct keys", async () => {
     const res = await request(server).post("/api/median_prime").send({ n: 10 });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
     expect(res.body).toHaveProperty("primes");
     expect(res.body).toHaveProperty("medianPrime");
   });
@@ -14,15 +14,15 @@ describe("POST /api/median_prime", () => {
   it("should calculate median prime correctly for even number of primes", async () => {
     const res = await request(server).post("/api/median_prime").send({ n: 10 });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
-    expect(res.body.formattedMedianPRime).toEqual("[3, 5]");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
+    expect(res.body.formattedMedianPrime).toEqual("[3, 5]");
   });
 
   it("should calculate median prime correctly for odd number of primes", async () => {
     const res = await request(server).post("/api/median_prime").send({ n: 18 });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
-    expect(res.body.formattedMedianPRime).toEqual("[7]");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
+    expect(res.body.formattedMedianPrime).toEqual("[7]");
   });
 
   it("should handle large inputs", async () => {
@@ -30,8 +30,8 @@ describe("POST /api/median_prime", () => {
       .post("/api/median_prime")
       .send({ n: 12000 });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
-    expect(res.body.formattedMedianPRime).toEqual("[5441, 5443]");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
+    expect(res.body.formattedMedianPrime).toEqual("[5441, 5443]");
   });
 
   it("should return error when input is not a number", async () => {
@@ -60,8 +60,8 @@ describe("POST /api/median_prime", () => {
   it("should handle case where only one prime exists below input (n=3)", async () => {
     const res = await request(server).post("/api/median_prime").send({ n: 3 });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
-    expect(res.body.formattedMedianPRime).toEqual("[2]");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
+    expect(res.body.formattedMedianPrime).toEqual("[2]");
   });
 
   it("should return error when no input is provided", async () => {
@@ -83,8 +83,8 @@ describe("POST /api/median_prime", () => {
       .post("/api/median_prime")
       .send({ n: 10, extra: "field" });
     expect(res.statusCode).toEqual(200);
-    expect(res.body).toHaveProperty("formattedMedianPRime");
-    expect(res.body.formattedMedianPRime).toEqual("[3, 5]");
+    expect(res.body).toHaveProperty("formattedMedianPrime");
+    expect(res.body.formattedMedianPrime).toEqual("[3, 5]");
   });
 });
 
