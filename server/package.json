@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node dist/server.js",
+    "dev": "concurrently \"npm run dev:server\" \"cd ../client && npm start\"",
+    "dev:server": "ts-node server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +27,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/supertest": "^2.0.12",
+    "concurrently": "^8.2.0",
     "supertest": "^6.3.3"
   }
 }

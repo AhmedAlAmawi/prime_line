@@ -4,6 +4,7 @@ import cors from "cors";
 //HELPERS
 import { getPrimes, getMedian } from "./primeHelpers";
 
+const port = 8000;
 const server = express();
 server.use(cors());
 server.use(express.json());
@@ -29,6 +30,10 @@ server.post(
 // Error handling middleware
 server.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(400).json({ error: err.message });
+});
+
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 export default server;
