@@ -6,7 +6,11 @@ type FormInputs = {
 };
 
 interface MedianHook {
-  medianPrime: any;
+  medianPrime: {
+    formattedMedianPrime: string;
+    primes: number[];
+    medianPrime: number[];
+  } | null;
   serverError: string | null;
   isFetching: boolean;
   onSubmit: SubmitHandler<FormInputs>;
@@ -14,12 +18,15 @@ interface MedianHook {
 
 const useMedian = (): MedianHook => {
   const [isFetching, setIsFetching] = useState<MedianHook["isFetching"]>(false);
-  const [medianPrime, setMedianPrime] =
-    useState<MedianHook["medianPrime"]>(null);
+  const [medianPrime, setMedianPrime] = useState<
+    MedianHook["medianPrime"] | null
+  >(null);
   const [serverError, setServerError] =
     useState<MedianHook["serverError"]>(null);
 
-  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+  const onSubmit: SubmitHandler<FormInputs> = async (data: {
+    numberInput: string;
+  }) => {
     const numberInput = parseInt(data.numberInput, 10);
 
     if (isNaN(numberInput)) {
