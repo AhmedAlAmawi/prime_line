@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import Input, { InputProps } from "../src/components/input";
+import Input, { InputProps } from "../src/components/Input";
 
 describe("Input component", () => {
   const inputProps: InputProps = {
