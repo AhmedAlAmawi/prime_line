@@ -54,8 +54,13 @@ const useMedian = (): MedianHook => {
       setServerError(null);
       setIsFetching(false);
     } catch (error: unknown) {
+      const errorMessage = (error as Error).message;
       setIsFetching(false);
-      setServerError((error as Error).message);
+      setServerError(
+        errorMessage.includes("Unexpected")
+          ? "Server not available"
+          : errorMessage
+      );
     }
   };
 
