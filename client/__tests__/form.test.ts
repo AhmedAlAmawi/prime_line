@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { render, screen, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Form from "../src/components/Form";
 import useMedian from "../src/hooks/useMedian";
@@ -41,7 +41,7 @@ describe("Form Component", () => {
     const submitButton = screen.getByRole("button", { name: /Calculate/i });
     userEvent.type(numberInput, "10");
     userEvent.click(submitButton);
-    await new Promise((resolve) => setTimeout(resolve, 0));
+    await act(() => new Promise((resolve) => setTimeout(resolve, 0)));
     expect(mockOnSubmit).toHaveBeenCalled();
   });
 
