@@ -15,16 +15,18 @@ docker compose up
 
 ### Testing Application
 You can test the front end and back end individually run the snippet of script at the root directory of the codebase
-
+npm install would need to be run to ensure dev dependencies are available.
 Frontend:
 ```
 cd client
+npm install
 npm run test
 ```
 
 Backend:
 ```
 cd server
+npm install
 npm run test
 ```
 
